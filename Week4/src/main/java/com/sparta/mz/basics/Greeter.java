@@ -7,11 +7,13 @@ public class Greeter {
     }
 
     public static String getGreeting(int timeOfDay) {
-        if(timeOfDay < 5) {
+        if(timeOfDay < 0 || timeOfDay > 24) {
+            return "Invalid time!";
+        } else if(timeOfDay < 5) {
             return "It's early!";
-        } else if (timeOfDay >= 5 && timeOfDay < 12) {
+        } else if (timeOfDay < 12) {
             return "Good morning!";
-        } else if (timeOfDay >= 12 && timeOfDay <= 18) {
+        } else if (timeOfDay < 18) {
             return "Good afternoon!";
         } else {
             return "Good evening!";
