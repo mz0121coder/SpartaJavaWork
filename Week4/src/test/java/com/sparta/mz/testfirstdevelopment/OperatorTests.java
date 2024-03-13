@@ -1,4 +1,5 @@
 package com.sparta.mz.testfirstdevelopment;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,8 +17,7 @@ public class OperatorTests {
     })
 
     @DisplayName("Given two numbers X and Y, greaterEqual returns whether X is greater than or equal to Y")
-    public void givenTwoNumbersXY_GreaterEqual_ReturnsWhetherXIsGreaterOrEqualToY(int x, int y, boolean expResult)
-    {
+    public void givenTwoNumbersXY_GreaterEqual_ReturnsWhetherXIsGreaterOrEqualToY(int x, int y, boolean expResult) {
         Assertions.assertTrue(expResult == Methods.greaterEqual(x, y));
     }
 
@@ -29,8 +29,7 @@ public class OperatorTests {
             "",
     })
     @DisplayName("Given a number, BODMAS returns the expected result")
-    public void givenNumber_BODMAS_ReturnsTheExpectedResult(int num, double expResult)
-    {
+    public void givenNumber_BODMAS_ReturnsTheExpectedResult(int num, double expResult) {
         Assertions.assertEquals(expResult, Methods.BODMAS(num), 0.001);
     }
 }
