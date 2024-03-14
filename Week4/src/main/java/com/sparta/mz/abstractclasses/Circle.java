@@ -1,13 +1,14 @@
 package com.sparta.mz.abstractclasses;
 
-public class Circle extends Shape implements Printable{
+public class Circle extends Shape implements Printable {
     private final double radius;
-    public Circle(double radius){
+
+    public Circle(double radius) {
         this.radius = radius;
     }
 
     @Override
-    public double calculateArea(){
+    public double calculateArea() {
         Circle circle = new Circle(radius);
         return (Math.PI * radius * radius);
     }
@@ -18,7 +19,7 @@ public class Circle extends Shape implements Printable{
     }
 
     @Override
-    public void print() {
-
+    public short print() {
+        return 0;
     }
 }

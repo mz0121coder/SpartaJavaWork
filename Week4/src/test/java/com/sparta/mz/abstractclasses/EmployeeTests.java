@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 public class EmployeeTests {
     @Test
     @DisplayName("check test employee credentials")
-    public void givenAnEmployeeCheckDeleteMethod() {
-        Employee testEmployee = new Employee("Test", "Employee") {
+    public void checkEmployeeName() {
+        Employee employee = new Employee("Test", "Employee") {
             @Override
-            public void print() {
-                System.out.println("Testing");
+            public short print() {
+                return 0;
             }
         };
-        Assertions.assertEquals(testEmployee.getFirstName(), "Test");
+        String fullName = employee.getFirstName() + " " + employee.getLastName();
+        Assertions.assertEquals(fullName, "Test Employee");
     }
-    
 }

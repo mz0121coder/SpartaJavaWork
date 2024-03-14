@@ -2,12 +2,14 @@ package com.sparta.mz.abstractclasses;
 
 public interface Printable {
     int score = 0;
-    void print();
-    static void doSomething(){
+
+    short print();
+
+    static void doSomething() {
 
     }
 
-    default void doSomethingElse(){
+    default void doSomethingElse() {
         System.out.println("Hello");
     }
 }

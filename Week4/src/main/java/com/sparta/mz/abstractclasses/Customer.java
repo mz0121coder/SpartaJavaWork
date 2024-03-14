@@ -2,7 +2,7 @@ package com.sparta.mz.abstractclasses;
 
 import java.util.Objects;
 
-public class Customer extends Person  implements Printable{
+public class Customer extends Person implements Printable {
 
     public Customer(String firstName, String lastName) {
         super(firstName, lastName);
@@ -14,8 +14,9 @@ public class Customer extends Person  implements Printable{
     }
 
     @Override
-    public void print(){
+    public short print() {
         System.out.println("Customer name: " + super.getFirstName());
+        return 0;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class Customer extends Person  implements Printable{
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(getFirstName(), getLastName());
     }
 }

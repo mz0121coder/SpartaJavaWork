@@ -1,14 +1,14 @@
 package com.sparta.mz.abstractclasses;
 
-public class Square extends Shape implements Printable{
+public class Square extends Shape implements Printable {
     private final double side;
 
-    public Square(double side){
+    public Square(double side) {
         this.side = side;
     }
 
     @Override
-    public double calculateArea(){
+    public double calculateArea() {
         return side * side;
     }
 
@@ -18,7 +18,8 @@ public class Square extends Shape implements Printable{
     }
 
     @Override
-    public void print() {
+    public short print() {
 
+        return 0;
     }
 }

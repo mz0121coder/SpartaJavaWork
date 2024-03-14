@@ -1,9 +1,9 @@
-package com.sparta.mz.abstractclasses.shapes;
+package com.sparta.mz.shapes;
 
 public abstract class Shape {
     public abstract double calculateArea();
 
-    public String toString(){
+    public String toString() {
         return "This shape has an area of " + calculateArea();
     }
 }
