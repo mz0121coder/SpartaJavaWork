@@ -1,6 +1,6 @@
 package com.sparta.mz.abstractclasses;
 
-public abstract class Person {
+public abstract class Person  implements Printable{
     private String firstName;
     private String lastName;
 
@@ -24,4 +24,8 @@ public abstract class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public abstract void delete();
+
+    public abstract void print();
 }
