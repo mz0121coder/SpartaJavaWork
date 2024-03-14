@@ -14,7 +14,7 @@ public class CounterTests {
 
     @Test
     @DisplayName("current count, head count, capacity and people leaving should always be at least 0")
-    public void checkLeavingEqualsHeadcount(){
+    public void checkCountsAreAlwaysAtLeast0(){
         CounterApp counter = new CounterApp();
         Assertions.assertTrue(Counter.getGlobalCount() >= 0 && Counter.getCapacity() >= 0 && Counter.getPeopleLeaving() >= 0);
     }

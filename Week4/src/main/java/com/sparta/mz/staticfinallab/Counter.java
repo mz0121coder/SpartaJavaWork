@@ -3,6 +3,7 @@ package com.sparta.mz.staticfinallab;
 import java.util.Random;
 
 public class Counter {
+//    might not be ideal
     private final String name;
     private int count;
     private static int globalCount = 0;
