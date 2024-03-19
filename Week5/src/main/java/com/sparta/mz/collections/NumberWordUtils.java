@@ -20,7 +20,6 @@ public class NumberWordUtils {
             int lettersCount = word.replaceAll("[^a-zA-Z]+", "").length();
             if (lettersCount >= 5) result.add(word);
         }
-        System.out.println(result.get(1));
         return result;
     }
 }

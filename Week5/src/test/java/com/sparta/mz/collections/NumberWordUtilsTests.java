@@ -77,24 +77,42 @@ public class NumberWordUtilsTests {
     }
 
     @Test
-    @DisplayName("String with numbers only")
+    @DisplayName("String with numbers only - returns empty list")
     public void testNumbersAndSymbolsOnly() {
         List<String> testData = NumberWordUtils.longWordList("2939");
         Assertions.assertTrue(testData.isEmpty());
     }
 
     @Test
-    @DisplayName("String with numbers, symbols and spaces")
+    @DisplayName("String with numbers, symbols and spaces - returns empty list")
     public void testNumbersSymbolsAndSpaces() {
         List<String> testData = NumberWordUtils.longWordList("2939!@£  ");
         Assertions.assertTrue(testData.isEmpty());
     }
 
     @Test
-    @DisplayName("Words all under 5 letters")
-    public void testStringWithWordsALlUnder5Letters() {
+    @DisplayName("Words all under 5 letters - returns empty list")
+    public void testStringWithWordsAllUnder5Letters() {
         List<String> testData = NumberWordUtils.longWordList("mini word only less than five .£$@Q");
         Assertions.assertTrue(testData.isEmpty());
     }
-    
+
+    @Test
+    @DisplayName("Words all at least 5 letters - returns set with each word included")
+    public void testStringWithWordsAllAtLeast5Letters() {
+        List<String> testData = NumberWordUtils.longWordList("Elephant Giraffe Tiger Animals");
+        String[] words = {"Elephant", "Giraffe", "Tiger", "Animals"};
+        for (String w : words) Assertions.assertTrue(testData.contains(w));
+        Assertions.assertEquals(testData.size(), words.length);
+    }
+
+    @Test
+    @DisplayName("Mix of words under/over 5 letters - returns correct set")
+    public void testStringWithMixedWords() {
+        List<String> testData = NumberWordUtils.longWordList(("This is a mixed string of words, d1g1ts and s4mbo!$."));
+        String[] words = {"mixed", "string", "words,"};
+        System.out.println(testData);
+        for (String w : words) Assertions.assertTrue(testData.contains(w));
+        Assertions.assertEquals(3, testData.size());
+    }
 }
