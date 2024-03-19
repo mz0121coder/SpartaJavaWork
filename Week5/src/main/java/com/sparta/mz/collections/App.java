@@ -1,6 +1,8 @@
 package com.sparta.mz.collections;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class App {
     public static void main(String[] args) {
@@ -18,5 +20,8 @@ public class App {
 
         Collections.sort(people, new PersonComparator());
         System.out.println(people);
+
+        System.out.println(NumberWordUtils.makeFiveSet(16));
+        System.out.println(NumberWordUtils.longWordList("Words greater seven"));
     }
 }
