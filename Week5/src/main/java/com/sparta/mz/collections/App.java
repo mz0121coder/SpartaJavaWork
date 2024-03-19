@@ -1,47 +1,22 @@
 package com.sparta.mz.collections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-//        Array
-        int[] intArray = {4, 8, 11, 16, 20};
 
-        System.out.println("integer array: " + Arrays.toString(intArray));
-        intArray[2] = 12;
-        System.out.println("Updated integer array: " + Arrays.toString(intArray));
+        ArrayList<String> names = new ArrayList<>(Arrays.asList("Leonardo", "Donatello", "Michael", "Raphael"));
+        Collections.sort(names);
+        System.out.println(names);
 
-//        ArrayList
-        ArrayList<String> names = new ArrayList<String>();
-        names.add("Alex");
-        names.add("Jack");
-        names.add("X");
-        names.add("Eve");
-        names.add("Adam");
+        ArrayList<Person> people = new ArrayList<>();
 
-        System.out.println("Names: " + names);
-        names.set(2, "Siyu");
-        System.out.println("Updated names: " + names);
+        people.add(new Person("Manish", "Gadhvi"));
+        people.add(new Person("Alex", "Blunt"));
+        people.add(new Person("Joe", "Bloggs"));
+        people.add(new Person("David", "Harvey"));
 
-//        HashMap
-        HashMap<String, Integer> months = new HashMap<>();
-        months.put("January", 31);
-        months.put("February", 28);
-        months.put("March", 31);
-        months.put("April", 30);
-        months.put("May", 31);
-        months.put("June", 30);
-        months.put("July", 31);
-        months.put("August", 31);
-        months.put("September", 30);
-        months.put("October", 31);
-        months.put("November", 30);
-        months.put("December", 31);
-
-        System.out.println("February: " + months.get("February"));
-        months.put("February", 29);
-        System.out.println("February: " + months.get("February"));
+        Collections.sort(people, new PersonComparator());
+        System.out.println(people);
     }
 }
