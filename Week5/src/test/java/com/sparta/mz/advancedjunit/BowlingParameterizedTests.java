@@ -13,7 +13,7 @@ public class BowlingParameterizedTests {
             "9- 9- 9- 9- 9- 9- 9- 9- 9- 9-, 90",
             "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5, 150",
             "X X X X X X X X X X X X X, 300",
-            "X 9/ 5- 72 X X 9- X 2/ 3-, 167",
+            "X 9/ 5- 72 X X 9- X 2/ 3-, 142",
     })
 
     @DisplayName("Test bowling scores")

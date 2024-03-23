@@ -31,8 +31,8 @@ public class BowlingTests {
     }
 
     @Test
-    @DisplayName("Mix of strikes, spares, and open frames - 167 points")
-    public void checkMixedScoresReturnOneHundredSixtySevenPoints() {
-        Assertions.assertEquals(167, Bowling.getTotalScore("X 9/ 5- 72 X X 9- X 2/ 3-"));
+    @DisplayName("Mix of strikes, spares, and open frames - 142 points")
+    public void checkMixedScoresReturnOneHundredFortyTwoPoints() {
+        Assertions.assertEquals(142, Bowling.getTotalScore("X 9/ 5- 72 X X 9- X 2/ 3-"));
     }
 }

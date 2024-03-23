@@ -9,17 +9,10 @@ public class Bowling {
         int total = 0;
         for (int i = 0; i < 10; i++) {
             score += getFrameScore(frames[i]);
-            if (frames[i].equals("X")) {
-                if (frames[i + 1].equals("X")) {
-                    bonus += getFrameScore(frames[i + 1]);
-                    bonus += getFrameScore(frames[i + 2].substring(0, 1));
-                } else {
-                    bonus += getFrameScore(frames[i + 1].substring(0, 2));
-                }
-            }
-            if (frames[i].endsWith("/")) bonus += getFrameScore(frames[i + 1].substring(0, 1));
+            bonus = getFrameBonus(frames, i, bonus);
         }
-        total += score + bonus;
+        total += score;
+        total += bonus;
         return total;
     }
 
@@ -32,5 +25,18 @@ public class Bowling {
             if (roll == 'X') frameScore += 10;
         }
         return frameScore;
+    }
+
+    private static int getFrameBonus(String[] frames, int i, int bonus) {
+        if (frames[i].equals("X")) {
+            if (frames[i + 1].equals("X")) {
+                bonus += getFrameScore(frames[i + 1]);
+                bonus += getFrameScore(frames[i + 2].substring(0, 1));
+            } else {
+                bonus += getFrameScore(frames[i + 1].substring(0, Math.max(1, frames[i + 1].length())));
+            }
+        }
+        if (frames[i].endsWith("/")) bonus += getFrameScore(frames[i + 1].substring(0, 1));
+        return bonus;
     }
 }
