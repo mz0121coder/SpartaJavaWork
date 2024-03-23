@@ -15,9 +15,9 @@ public class BowlingParameterizedTests {
             "X X X X X X X X X X X X X, 300",
             "X 9/ 5- 72 X X 9- X 2/ 3-, 167",
     })
-    
+
     @DisplayName("Test bowling scores")
     public void testBowlingScores(String game, int expectedScore) {
-        Assertions.assertEquals(expectedScore, Bowling.getScore(game));
+        Assertions.assertEquals(expectedScore, Bowling.getTotalScore(game));
     }
 }
