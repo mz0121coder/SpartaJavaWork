@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 public class BowlingTests {
 
     @Test
-    @DisplayName("10 strikes - 300 points")
-    public void checkTenStrikesReturnThreeHundredPoints() {
-        Assertions.assertEquals(300, Bowling.getScore("X X X X X X X X X X X X"));
+    @DisplayName("All misses - 0 points")
+    public void checkAllMissesReturnZeroPoints() {
+        Assertions.assertEquals(0, Bowling.getScore("-- -- -- -- -- -- -- -- -- --"));
     }
 
     @Test
@@ -25,20 +25,14 @@ public class BowlingTests {
     }
 
     @Test
-    @DisplayName("All misses - 0 points")
-    public void checkAllMissesReturnZeroPoints() {
-        Assertions.assertEquals(0, Bowling.getScore("-- -- -- -- -- -- -- -- -- --"));
+    @DisplayName("All strikes with bonus balls - 300 points")
+    public void checkAllStrikesWithBonusBallsReturnThreeHundredPoints() {
+        Assertions.assertEquals(300, Bowling.getScore("X X X X X X X X X X X X X"));
     }
 
     @Test
     @DisplayName("Mix of strikes, spares, and open frames - 167 points")
     public void checkMixedScoresReturnOneHundredSixtySevenPoints() {
         Assertions.assertEquals(167, Bowling.getScore("X 9/ 5- 72 X X 9- X 2/ 3-"));
-    }
-
-    @Test
-    @DisplayName("All strikes with bonus balls - 300 points")
-    public void checkAllStrikesWithBonusBallsReturnThreeHundredPoints() {
-        Assertions.assertEquals(300, Bowling.getScore("X X X X X X X X X X X X X"));
     }
 }
