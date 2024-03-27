@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2024-03-26T13:59:57.745522Z</date>
+  <millis>1711461597745</millis>
+  <nanos>522000</nanos>
+  <sequence>0</sequence>
+  <logger>com.sparta.mz.logging.App</logger>
+  <level>INFO</level>
+  <class>com.sparta.mz.logging.App</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>This is an info message</message>
+</record>
+<record>
+  <date>2024-03-26T13:59:57.754683Z</date>
+  <millis>1711461597754</millis>
+  <nanos>683000</nanos>
+  <sequence>1</sequence>
+  <logger>com.sparta.mz.logging.App</logger>
+  <level>WARNING</level>
+  <class>com.sparta.mz.logging.App</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>This is a warning message</message>
+</record>
+<record>
+  <date>2024-03-26T13:59:57.754941Z</date>
+  <millis>1711461597754</millis>
+  <nanos>941000</nanos>
+  <sequence>2</sequence>
+  <logger>com.sparta.mz.logging.App</logger>
+  <level>FINE</level>
+  <class>com.sparta.mz.logging.App</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>This is a fine message</message>
+</record>
+</log>
