@@ -21,5 +21,20 @@ public class App {
         System.out.println(emailMatcher.find());
 
         System.out.println(email.matches("^[A-Za-z]+@[A-Za-z]+\\.com+$"));
+
+        // Match a UK PostCode
+        String postCodeOne = "NE3 3HY";
+        String postCodeTwo = "B1 8NE";
+        String postCodeThree = "BT22 1JP";
+        String postCodeFour = "SE1P 5LX";
+
+        String[] postCodeArr = {postCodeOne, postCodeTwo, postCodeThree, postCodeFour};
+
+        Pattern postCodePattern = Pattern.compile("[A-Z]{1,2}\\d[A-Z\\d]{0,1}\\s\\d[A-Z]{2}");
+
+        for (String postCode : postCodeArr) {
+            Matcher postCodeMatcher = postCodePattern.matcher(postCode);
+            System.out.println(postCodeMatcher.find());
+        }
     }
 }
