@@ -1,0 +1,29 @@
+<Spartans>
+    <Spartan>
+        <name>Tom</name>
+        <course>Java</course>
+        <dob>2000-12-05</dob>
+    </Spartan>
+    <Spartan>
+        <name>Siyu</name>
+        <course>Java</course>
+        <dob>2000-10-04</dob>
+    </Spartan>
+    <Spartan>
+        <name>DJ</name>
+        <course>Java</course>
+        <dob>2000-09-03</dob>
+    </Spartan>
+    <Spartan>
+        <name>Mohammad</name>
+        <course>Java</course>
+        <dob>2000-08-02</dob>
+    </Spartan>
+</Spartans>
+<Spartans>
+<Spartan><name>Adam</name><course>Java</course><dob>2000-11-06</dob></Spartan>
+<Spartan><name>Tom</name><course>Java</course><dob>2000-12-05</dob></Spartan>
+<Spartan><name>Siyu</name><course>Java</course><dob>2000-10-04</dob></Spartan>
+<Spartan><name>DJ</name><course>Java</course><dob>2000-09-03</dob></Spartan>
+<Spartan><name>Mohammad</name><course>Java</course><dob>2000-08-02</dob></Spartan>
+</Spartans>

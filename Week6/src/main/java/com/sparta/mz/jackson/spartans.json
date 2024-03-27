@@ -1,1 +1,28 @@
-{"name":"Mohammad","course":"Java","dob":"2000-08-02"}]
+[
+  {
+    "name": "Adam",
+    "course": "Java",
+    "dob": "2000-11-06"
+  },
+  {
+    "name": "Tom",
+    "course": "Java",
+    "dob": "2000-12-05"
+  },
+  {
+    "name": "Siyu",
+    "course": "Java",
+    "dob": "2000-10-04"
+  },
+  {
+    "name": "DJ",
+    "course": "Java",
+    "dob": "2000-09-03"
+  },
+  {
+    "name": "Mohammad",
+    "course": "Java",
+    "dob": "2000-08-02"
+  }
+]
+
