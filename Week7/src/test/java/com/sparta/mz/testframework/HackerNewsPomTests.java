@@ -1,6 +1,8 @@
-package com.sparta.mz.simpletests;
+package com.sparta.mz.testframework;
 
-import org.hamcrest.CoreMatchers;
+import com.sparta.mz.testframework.lib.pages.HomePage;
+import com.sparta.mz.testframework.lib.pages.PastPage;
+import com.sparta.mz.testframework.lib.pages.SearchPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -19,11 +21,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import static org.hamcrest.Matchers.*;
 
-public class HackerNewsTests {
+public class HackerNewsPomTests {
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
 
     private static final String BASE_URL = "https://news.ycombinator.com/";
@@ -73,17 +74,18 @@ public class HackerNewsTests {
         Assertions.assertEquals("https://news.ycombinator.com/", webDriver.getCurrentUrl());
         Assertions.assertEquals("Hacker News", webDriver.getTitle());
     }
+
     @Test
     @DisplayName("Check that the link to the past page works")
     public void checkPastLink() {
         // Arrange
         webDriver.get(BASE_URL);
+        HomePage homePage = new HomePage(webDriver);
         // Act
-        WebElement pastLink = webDriver.findElement(By.linkText("past"));
-        pastLink.click();
+        PastPage pastPage = homePage.goToPastPage();
         // Assert
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://news.ycombinator.com/front"));
-        MatcherAssert.assertThat(webDriver.getTitle(), containsString("front"));
+        MatcherAssert.assertThat(pastPage.getUrl(), is("https://news.ycombinator.com/front"));
+        MatcherAssert.assertThat(pastPage.getTitle(), containsString("front"));
     }
 
     @Test
@@ -141,10 +143,11 @@ public class HackerNewsTests {
     void searchForJava() {
         // Arrange
         webDriver.get(BASE_URL);
+        HomePage homePage = new HomePage(webDriver);
         // Act
-        webDriver.findElement(By.name("q")).sendKeys("java", Keys.ENTER);
+        SearchPage searchPage = homePage.search("java");
         // Assert
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://hn.algolia.com/?q=java"));
+        MatcherAssert.assertThat(searchPage.getUrl(), is("https://hn.algolia.com/?q=java"));
     }
 
     @Test
