@@ -1,6 +1,7 @@
 package com.sparta.mz.testframework;
 
 import com.sparta.mz.testframework.lib.pages.HomePage;
+import com.sparta.mz.testframework.lib.pages.LoginPage;
 import com.sparta.mz.testframework.lib.pages.PastPage;
 import com.sparta.mz.testframework.lib.pages.SearchPage;
 import org.hamcrest.MatcherAssert;
@@ -11,7 +12,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.v85.log.Log;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,6 +31,7 @@ public class HackerNewsPomTests {
     private static final String DRIVER_LOCATION = "src/test/resources/chromedriver-mac-arm64/chromedriver";
 
     private static final String BASE_URL = "https://news.ycombinator.com/";
+    private static final String PAST_STORIES_URL = "https://news.ycombinator.com/front";
 
     private static ChromeDriverService service;
 
@@ -82,7 +86,7 @@ public class HackerNewsPomTests {
         webDriver.get(BASE_URL);
         HomePage homePage = new HomePage(webDriver);
         // Act
-        PastPage pastPage = homePage.goToPastPage();
+        PastPage pastPage = homePage.goToPastStoriesPage();
         // Assert
         MatcherAssert.assertThat(pastPage.getUrl(), is("https://news.ycombinator.com/front"));
         MatcherAssert.assertThat(pastPage.getTitle(), containsString("front"));
@@ -127,17 +131,6 @@ public class HackerNewsPomTests {
         MatcherAssert.assertThat(webDriver.getTitle(), containsString("jobs"));
     }
 
-//    @Test
-//    @DisplayName("Check that we can search for java")
-//    void searchForJava() {
-//        // Arrange
-//        webDriver.get(BASE_URL);
-//        // Act
-//        webDriver.findElement(By.name("q")).sendKeys("java", Keys.ENTER);
-//        // Assert
-//        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://hn.algolia.com/?q=java"));
-//    }
-
     @Test
     @DisplayName("Check that we can search for java")
     void searchForJava() {
@@ -145,7 +138,7 @@ public class HackerNewsPomTests {
         webDriver.get(BASE_URL);
         HomePage homePage = new HomePage(webDriver);
         // Act
-        SearchPage searchPage = homePage.search("java");
+        SearchPage searchPage = homePage.searchFor("java");
         // Assert
         MatcherAssert.assertThat(searchPage.getUrl(), is("https://hn.algolia.com/?q=java"));
     }
@@ -153,115 +146,50 @@ public class HackerNewsPomTests {
     @Test
     @DisplayName("Check that we can use search facility with wait")
     void searchForJavaWithWait() {
-         Wait<WebDriver> webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-
+//        Arrange
         webDriver.get(BASE_URL);
-
-        webDriver.findElement(By.name("q"))
-                .sendKeys("Java", Keys.ENTER);
-
-         webDriverWait.until(driver -> driver.getCurrentUrl().contains("/?q=Java"));
-
-        MatcherAssert.assertThat(
-                webDriver.findElement(By.cssSelector(".Story:nth-child(1)"))
-                        .getText()
-                        .toLowerCase(),
-                containsString("java")
-        );
+        HomePage homePage = new HomePage(webDriver);
+//        Act
+        homePage.searchFor("Java");
+        homePage.waitForSearchResults("Java");
+//        Assert
+        MatcherAssert.assertThat(homePage.getFirstSearchResultText(),containsString("java"));
     }
 
     @Test
     @DisplayName("Check that the date for yesterday's stories is correct")
     public void checkPastDateFormatIsCorrect() {
-        // Arrange
-        webDriver.get(BASE_URL);
-        LocalDate today = LocalDate.now();
-        LocalDate yesterday = today.minusDays(1);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String yesterdayFormatted = yesterday.format(formatter);
-
-        // Act
-        WebElement pastLink = webDriver.findElement(By.linkText("past"));
-        pastLink.click();
-
-        // Assert
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://news.ycombinator.com/front"));
-        MatcherAssert.assertThat(webDriver.findElement(By.tagName("font")).getText(), is(yesterdayFormatted));
+//        Arrange
+        webDriver.get(PAST_STORIES_URL);
+        PastPage pastPage = new PastPage(webDriver);
+//        Assert
+        MatcherAssert.assertThat(pastPage.checkYesterdayDateFormat(), is(true));
     }
-
-//    Philip's test
-//    @Test
-//    @DisplayName("Check that the past page has yesterday's date")
-//    void checkYesterdayDay() {
-//        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//
-//        webDriver.get(BASE_URL);
-//
-//        WebElement pastLink = wait.until(p -> p.findElement(By.linkText("past")));
-//        pastLink.click();
-//
-//        LocalDate yesterday = LocalDate.now().minusDays(1);
-//
-//        wait.until(d -> d.getCurrentUrl().contains("front"));
-//        String topString = webDriver.findElement(By.className("pagetop")).getText();
-//
-//        MatcherAssert.assertThat(topString, containsString(yesterday.toString()));
-//    }
-
-//    @Test
-//    @DisplayName("Check that each story from yesterday is created no more than 1 day ago")
-//    public void checkPastStoriesCreationDate() {
-////        Arrange
-//        webDriver.get(BASE_URL);
-//        Pattern createdPattern = Pattern.compile("1 day ago|\\d{1,2} hours ago");
-////        Act
-//        WebElement pastLink = webDriver.findElement(By.linkText("past"));
-//        pastLink.click();
-//        Wait<WebDriver> webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-////        Assert
-//        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://news.ycombinator.com/front"));
-//
-//        List<WebElement> elements = webDriver.findElements(By.className("subtext a:link"));
-//        webDriverWait.until(elements.toString(), is(not("")));
-//        MatcherAssert.assertThat(elements.stream().map(WebElement::getText).allMatch(text -> createdPattern.matcher(text).matches()), CoreMatchers.is(true));
-//    }
 
     @Test
     @DisplayName("Attempt invalid login")
     void invalidLoginTest() {
-        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriver.get("https://news.ycombinator.com/login");
-
-        WebElement userNameBox = wait.until(p -> p.findElement(By.name("acct")));
-        userNameBox.sendKeys("Cathy");
-
-        WebElement passwordInput = webDriver.findElement(By.name("pw"));
-        // Alternative way of finding passwordInput using RelativeLocator
-        // WebElement passwordInput = webDriver.findElement(
-        //         RelativeLocator.with(By.tagName("input"))
-        //                       .below(userNameBox));
-        passwordInput.sendKeys("£&%!");
-
-        webDriver.findElement(By.cssSelector("input[value='login']")).click();
-
-        MatcherAssert.assertThat(
-                wait.until(p -> p.findElement(By.tagName("body")).getText().contains("Bad login.")),
-                is(true)
-        );
+//        Arrange
+        webDriver.get(BASE_URL);
+        LoginPage loginPage = new LoginPage(webDriver);
+//        Act
+        loginPage.openLoginPage();
+        loginPage.enterUsername("Cathy");
+        loginPage.enterPassword("£&%!");
+        loginPage.submitLoginForm();
+//        Assert
+        MatcherAssert.assertThat(loginPage.isErrorMessageDisplayed(),is(true));
     }
 
     @Test
     void checkNumberOfSearchResultsPerPageIs30() {
-        Wait<WebDriver> webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-
+//        Arrange
         webDriver.get(BASE_URL);
-
-        webDriver.findElement(By.name("q")).sendKeys("java", Keys.ENTER);
-
-        webDriverWait.until(d -> d.getCurrentUrl().contains("q=java"));
-        List<WebElement> results = webDriver.findElements(By.className("Story"));
-
-        MatcherAssert.assertThat(results.size(), lessThanOrEqualTo(30));
+        HomePage homePage = new HomePage(webDriver);
+//        Act
+        SearchPage searchPage = homePage.searchFor("java");
+//        Assert
+        int numberOfResults = searchPage.getNumberOfResults();
+        MatcherAssert.assertThat(numberOfResults, lessThanOrEqualTo(30));
     }
 }

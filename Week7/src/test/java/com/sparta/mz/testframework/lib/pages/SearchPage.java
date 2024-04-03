@@ -1,6 +1,10 @@
 package com.sparta.mz.testframework.lib.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class SearchPage {
     private final WebDriver webDriver;
@@ -14,5 +18,9 @@ public class SearchPage {
 
     public String getUrl() {
         return webDriver.getCurrentUrl();
+    }
+    public int getNumberOfResults(){
+        List<WebElement> results = webDriver.findElements(By.className("Story"));
+        return results.size();
     }
 }

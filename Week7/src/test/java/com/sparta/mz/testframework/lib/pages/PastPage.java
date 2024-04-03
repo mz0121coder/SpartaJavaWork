@@ -1,6 +1,11 @@
 package com.sparta.mz.testframework.lib.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class PastPage {
     private final WebDriver webDriver;
@@ -20,4 +25,14 @@ public class PastPage {
     public String getTitle() {
         return webDriver.getTitle();
     }
+
+    public String getYesterdayDate() {
+        WebElement dateElement = webDriver.findElement(By.tagName("font"));
+        return dateElement.getText();
+    }
+
+    public boolean checkYesterdayDateFormat() {
+        return getYesterdayDate().equals(LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+    }
 }
+
