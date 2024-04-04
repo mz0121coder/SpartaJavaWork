@@ -32,4 +32,6 @@ public class LoginPage {
     public boolean isErrorMessageDisplayed() {
         return webDriver.findElement(By.tagName("body")).getText().contains("Bad login.");
     }
+
+
 }

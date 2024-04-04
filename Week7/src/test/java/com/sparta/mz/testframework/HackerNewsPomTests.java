@@ -1,9 +1,6 @@
 package com.sparta.mz.testframework;
 
-import com.sparta.mz.testframework.lib.pages.HomePage;
-import com.sparta.mz.testframework.lib.pages.LoginPage;
-import com.sparta.mz.testframework.lib.pages.PastPage;
-import com.sparta.mz.testframework.lib.pages.SearchPage;
+import com.sparta.mz.testframework.lib.pages.*;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -123,12 +120,24 @@ public class HackerNewsPomTests {
     public void checkJobsLink() {
         // Arrange
         webDriver.get(BASE_URL);
+        HomePage homePage = new HomePage(webDriver);
         // Act
-        WebElement jobsLink = webDriver.findElement(By.linkText("jobs"));
-        jobsLink.click();
+        JobsPage jobsPage = homePage.goToJobsPage();
         // Assert
-        MatcherAssert.assertThat(webDriver.getCurrentUrl(), is("https://news.ycombinator.com/jobs"));
-        MatcherAssert.assertThat(webDriver.getTitle(), containsString("jobs"));
+        MatcherAssert.assertThat(jobsPage.getUrl(), is("https://news.ycombinator.com/jobs"));
+        MatcherAssert.assertThat(jobsPage.getTitle(), containsString("jobs"));
+    }
+
+    @Test
+    @DisplayName("Check that the jobs page shows correct amount of jobs")
+    public void checkCorrectNumberOfJobsIsShown() {
+        // Arrange
+        webDriver.get(BASE_URL);
+        HomePage homePage = new HomePage(webDriver);
+        // Act
+        JobsPage jobsPage = homePage.goToJobsPage();
+        // Assert
+        MatcherAssert.assertThat(jobsPage.getNumberOfResults() <= 30, is(true));
     }
 
     @Test

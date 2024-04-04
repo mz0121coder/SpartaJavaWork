@@ -34,5 +34,6 @@ public class PastPage {
     public boolean checkYesterdayDateFormat() {
         return getYesterdayDate().equals(LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }
+
 }
 

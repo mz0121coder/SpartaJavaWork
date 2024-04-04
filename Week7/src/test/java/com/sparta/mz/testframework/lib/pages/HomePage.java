@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class HomePage {
     private final WebDriver webDriver;
-
     private final By pastLink = By.linkText("past");
     private final By searchField = new By.ByName("q");
     private final WebDriverWait wait;
@@ -27,6 +26,11 @@ public class HomePage {
     public PastPage goToPastStoriesPage() {
         webDriver.findElement(pastLink).click();
         return new PastPage(webDriver);
+    }
+
+    public JobsPage goToJobsPage() {
+       webDriver.findElement(By.linkText("jobs")).click();
+       return new JobsPage(webDriver);
     }
 
     public SearchPage searchFor(String searchTerm){
