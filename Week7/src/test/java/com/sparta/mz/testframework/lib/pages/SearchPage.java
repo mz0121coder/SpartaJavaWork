@@ -17,7 +17,7 @@ public class SearchPage {
     }
 
     public String getUrl() {
-        return webDriver.getCurrentUrl();
+        return this.webDriver.getCurrentUrl();
     }
     public int getNumberOfResults(){
         List<WebElement> results = webDriver.findElements(By.className("Story"));

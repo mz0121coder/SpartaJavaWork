@@ -31,6 +31,7 @@ public class HomePage {
 
     public SearchPage searchFor(String searchTerm){
         webDriver.findElement(searchField).sendKeys(searchTerm, Keys.ENTER);
+        System.out.println("SEARCHING");
         return new SearchPage(webDriver);
     }
 
@@ -41,5 +42,9 @@ public class HomePage {
     public String getFirstSearchResultText() {
         WebElement firstResult = webDriver.findElement(By.cssSelector(".Story:nth-child(1)"));
         return firstResult.getText().toLowerCase();
+    }
+
+    public String getUrl() {
+        return this.webDriver.getCurrentUrl();
     }
 }
