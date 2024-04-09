@@ -10,7 +10,6 @@ Feature: As a User, I want to be able to browse jobs on the Hacker News Website
     When I click on the jobs link
     Then There should be up to 30 jobs articles displayed
 
-
   Scenario: User clicks to see more jobs and is shown the next 30
     Given I am on the Hacker News Homepage
     When I click on the jobs link

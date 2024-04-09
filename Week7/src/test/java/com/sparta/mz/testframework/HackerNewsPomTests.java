@@ -4,23 +4,14 @@ import com.sparta.mz.testframework.lib.pages.*;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.devtools.v85.log.Log;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 
@@ -162,7 +153,7 @@ public class HackerNewsPomTests {
         homePage.searchFor("Java");
         homePage.waitForSearchResults("Java");
 //        Assert
-        MatcherAssert.assertThat(homePage.getFirstSearchResultText(),containsString("java"));
+        MatcherAssert.assertThat(homePage.getFirstSearchResultText(), containsString("java"));
     }
 
     @Test
@@ -187,7 +178,7 @@ public class HackerNewsPomTests {
         loginPage.enterPassword("£&%!");
         loginPage.submitLoginForm();
 //        Assert
-        MatcherAssert.assertThat(loginPage.isErrorMessageDisplayed(),is(true));
+        MatcherAssert.assertThat(loginPage.isErrorMessageDisplayed(), is(true));
     }
 
     @Test
@@ -201,4 +192,5 @@ public class HackerNewsPomTests {
         int numberOfResults = searchPage.getNumberOfResults();
         MatcherAssert.assertThat(numberOfResults, lessThanOrEqualTo(30));
     }
+
 }

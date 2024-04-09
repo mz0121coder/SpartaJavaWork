@@ -15,7 +15,7 @@ public class LoginPage {
         webDriver.get("https://news.ycombinator.com/login");
     }
 
-    public void enterUsername(String username){
+    public void enterUsername(String username) {
         WebElement usernameInput = webDriver.findElement(By.name("acct"));
         usernameInput.sendKeys(username);
     }
@@ -33,5 +33,8 @@ public class LoginPage {
         return webDriver.findElement(By.tagName("body")).getText().contains("Bad login.");
     }
 
-
+    public boolean hasMessage(String message) {
+        String bodyText = webDriver.findElement(By.tagName("body")).getText();
+        return bodyText.contains(message);
+    }
 }
