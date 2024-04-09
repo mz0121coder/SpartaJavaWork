@@ -2,15 +2,13 @@ package com.sparta.mz.restassured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.hamcrest.*;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class SinglePostCodeTests {
 
@@ -24,6 +22,8 @@ public class SinglePostCodeTests {
                 .basePath("/postcodes")
                 .header("Accept", "text/json")
                 .when()
+                .log()
+                .all()
                 .get("/EC2Y5AS")
                 .thenReturn();
     }
@@ -35,7 +35,7 @@ public class SinglePostCodeTests {
                 .given()
                 .baseUri("https://api.postcodes.io")
                 .basePath("/postcodes")
-                .header("Accept", "text/json")
+                .header("Accept", "application/json")
                 .when()
                 .get("/EC2Y5AS")
                 .then()
@@ -71,7 +71,7 @@ public class SinglePostCodeTests {
     @Test
     @DisplayName("Check total number of codes returned is 14")
     void checkNumberOfCodesReturnedIs14() {
-//        System.out.println(response.jsonPath().getString("result"));
+        System.out.println(response.jsonPath().getString("result"));
         Map<String, String> codesMap = response.jsonPath().getMap("result.codes");
         MatcherAssert.assertThat(codesMap.size(), Matchers.is(14));
     }
